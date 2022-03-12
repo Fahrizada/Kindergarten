@@ -1,0 +1,53 @@
+﻿@model IEnumerable<KinderGarten.Models.Dijete>
+
+@{
+    ViewData["Title"] = "PrikazDjece";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="main-content">
+    <div class="section__content section__content--p30">
+        <div class="container-fluid">
+            <a href="#" ajax-poziv="da" ajax-url="/Djeca/DodajDijete" ajax-rezultat="dodajGradModalBody" ajax-modal="smallmodal" class="btn btn-secondary m-b-10" style="background-color:#333"><i class="fa fa-plus m-r-10"></i>Dodaj</a>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="table-responsive table-primary m-b-30">
+                        <table class="table table-borderless table-striped table-earning">
+                            <thead>
+                                <tr>
+                                    <th>Ime i prezime</th>
+                                    <th>Izbriši</th>
+                                    <th>Detalji</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var dijete in Model)
+                                {
+                                    <tr>
+                                        <td>@dijete.Ime @dijete.Prezime</td>
+                                        
+                                        <td><a href="/Djeca/ObrisiDijete?DijeteID=@dijete.ID"><i class="fa fa-trash"></i></a></td>
+                                        <td><a href="/Djeca/Detalji?DijeteID=@dijete.ID"><i class="fa fa-info"></i></a></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- modal medium -->
+<div class="modal fade" id="smallmodal" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="smallmodalLabel">Dodaj dijete</h5>
+            </div>
+            <div class="modal-body" id="dodajGradModalBody">
+
+            </div>
+        </div>
+    </div>
+</div>

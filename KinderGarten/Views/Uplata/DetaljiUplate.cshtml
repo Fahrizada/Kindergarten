@@ -1,0 +1,260 @@
+﻿@model KinderGarten.Models.Uplata
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<User> SignInManager;
+@inject UserManager<User> UserManager;
+@{var usr = await UserManager.GetUserAsync(User);}
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<div class="main-content">
+    <div class="section__content section__content--p30">
+        <div class="container-fluid">
+            <div class="container emp-profile">
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-img">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="profile-head">
+                            <h1>
+                                @Model.VrstaUplate.Vrsta
+                            </h1>
+
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Detalji o uplati</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    @if (usr.Role != "Roditelj")
+                    {
+
+                        <div class="col-md-2">
+                            <a href="#" ajax-poziv="da" ajax-url="/Uplata/Izmijeni?UplataID=@Model.ID" ajax-rezultat="dodajGradModalBody" ajax-modal="smallmodal" class="btn btn-secondary btn-sm btn-block" style="background-color:#333">Uredi</a>
+
+                        </div>
+                    }
+
+
+
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-work">
+
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="tab-content profile-tab" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Roditelj </label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>@Model.Roditelj.Ime @Model.Roditelj.Prezime</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Dijete</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>@Model.Dijete.Ime @Model.Dijete.Prezime</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label> Datum uplate</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>@Model.DatumUplate</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Iznos</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>@Model.Iznos</p>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+
+                                @if (usr.Role != "Roditelj")
+                                {
+
+                                    <div class="row">
+                                        <a href="#" ajax-poziv="da" ajax-url="/Uplata/DodajUplatu?UplataID=@Model.ID" ajax-rezultat="OOsobaModalBody" ajax-modal="smallmodalOOsoba" class="btn btn-secondary btn-lg btn-block" style="background-color:#333"><i class="fa fa-plus m-r-10"></i>Dodaj</a>
+                                    </div>
+                                }
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .emp-profile {
+        padding: 3%;
+        margin-top: 3%;
+        margin-bottom: 3%;
+        border-radius: 0.5rem;
+        background: #fff;
+    }
+
+    .profile-img {
+        text-align: center;
+    }
+
+        .profile-img img {
+            width: 70%;
+            height: 100%;
+        }
+
+        .profile-img .file {
+            position: relative;
+            overflow: hidden;
+            margin-top: -20%;
+            width: 70%;
+            border: none;
+            border-radius: 0;
+            font-size: 15px;
+            background: #212529b8;
+        }
+
+            .profile-img .file input {
+                position: absolute;
+                opacity: 0;
+                right: 0;
+                top: 0;
+            }
+
+    .profile-head h5 {
+        color: #333;
+    }
+
+    .profile-head h6 {
+        color: #0062cc;
+    }
+
+    .profile-edit-btn {
+        border: none;
+        border-radius: 1.5rem;
+        width: 70%;
+        padding: 2%;
+        font-weight: 600;
+        color: #6c757d;
+        cursor: pointer;
+    }
+
+    .proile-rating {
+        font-size: 12px;
+        color: #818182;
+        margin-top: 5%;
+    }
+
+        .proile-rating span {
+            color: #495057;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+    .profile-head .nav-tabs {
+        margin-bottom: 5%;
+    }
+
+        .profile-head .nav-tabs .nav-link {
+            font-weight: 600;
+            border: none;
+        }
+
+            .profile-head .nav-tabs .nav-link.active {
+                border: none;
+                border-bottom: 2px solid #0062cc;
+            }
+
+    .profile-work {
+        padding: 14%;
+        margin-top: -15%;
+    }
+
+        .profile-work p {
+            font-size: 12px;
+            color: #818182;
+            font-weight: 600;
+            margin-top: 10%;
+        }
+
+        .profile-work a {
+            text-decoration: none;
+            color: #495057;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .profile-work ul {
+            list-style: none;
+        }
+
+    .profile-tab label {
+        font-weight: 600;
+    }
+
+    .profile-tab p {
+        font-weight: 600;
+        color: #0062cc;
+    }
+</style>
+
+
+<!-- modal medium -->
+<div class="modal fade" id="smallmodal" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="smallmodalLabel">Izmijeni detalje o seminaru</h5>
+            </div>
+            <div class="modal-body" id="dodajGradModalBody">
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end modal medium -->
+<!-- modal medium -->
+
+@section Scripts{
+    <script>
+        ChangePreview = (input) => {
+            if (input.files && input.files[0]) {
+                let r = new FileReader();
+                r.onload = (e) => {
+                    $("#preview").attr("src", e.target.result);
+                };
+                r.readAsDataURL(input.files[0]);
+
+                const data = new FormData();
+                data.append("file", input.files[0]);
+
+               
+            }
+        }
+    </script>
+}

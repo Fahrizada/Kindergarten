@@ -1,0 +1,31 @@
+﻿@model IEnumerable<KinderGarten.ViewModels.DjecaGrupaVM>
+
+<div class="table-responsive table-primary m-b-30">
+    <table class="table table-borderless table-striped table-earning">
+        <thead>
+            <tr>
+                <th>Ime Prezime</th>
+                <th>Status</th>
+                <th>Akcija</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DijeteImePrezime)
+                    </td>
+                    <td>
+                        <a onclick="PromijeniStatus(@item.DijeteID)" class="btn @(item.Dolazak.HasValue && item.Dolazak.Value ? "btn-success" : "btn-danger")">@(item.Dolazak.HasValue && item.Dolazak.Value ? "Prisutan" : "Odsutan")</a>
+                    </td>
+                    <td>
+                        <a asp-action="UrediEvidenciju" asp-route-DijeteID="@item.DijeteID"><i class="fa fa-edit"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+

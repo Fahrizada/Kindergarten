@@ -1,0 +1,41 @@
+﻿@{ Layout = null; }
+
+@model KinderGarten.Models.Roditelj
+
+<div class="card">
+    <div class="card-body">
+        <form method="post" action="/Roditelj/DodajRoditelja" ajax-request="true" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+            <label for="roditelj.Ime">Ime</label>
+            <input asp-for="Ime" class="form-control">
+
+            <label for="roditelj.Prezime">Prezime</label>
+            <input asp-for="Prezime" class="form-control">
+
+            <label for="roditelj.JMBG">JMBG</label>
+            <input asp-for="JMBG" class="form-control">
+
+            <label for="roditelj.DatumRodjenja">Datum rođenja</label>
+            <input type="date" asp-for="DatumRodjenja" class="form-control">
+
+            <label for="roditelj.Adresa">Adresa</label>
+            <input asp-for="Adresa" class="form-control">
+
+            <label for="roditelj.BrojTelefona">Broj telefona</label>
+            <input asp-for="BrojTelefona" class="form-control">
+
+            <label for="roditelj.Email">Email</label>
+            <input asp-for="Email" class="form-control">
+
+
+
+            <label for="slika">Slika</label>
+            <input type="file" name="slika" class="form-control">
+
+            <div style="display:flex;justify-content:flex-end;" class="m-t-10">
+                <button type="button" class="btn btn-secondary m-r-10" data-dismiss="modal">Odbaci</button>
+                <button type="submit" id="DodajGrad" class="btn btn-primary">Sačuvaj</button>
+            </div>
+        </form>
+    </div>
+</div>

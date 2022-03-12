@@ -1,0 +1,45 @@
+﻿@{ Layout = null; }
+
+@model KinderGarten.ViewModels.DodajDijeteVM
+
+<div class="card">
+    <div class="card-body">
+        <form method="post" action="/Djeca/DodajDijete" ajax-request="true" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+
+            <label for="dijete.Ime">Ime</label>
+            <input asp-for="Ime" class="form-control">
+
+            <label for="dijete.Prezime">Prezime</label>
+            <input asp-for="Prezime" class="form-control">
+
+            <label for="dijete.JMBG">JMBG</label>
+            <input asp-for="JMBG" class="form-control">
+
+            <label for="dijete.DatumRodjenja">Datum rođenja</label>
+            <input type="date" asp-for="DatumRodjenja" class="form-control">
+
+
+            <label for="dijete.Napomena">Napomena</label>
+            <input asp-for="Napomena" class="form-control">
+
+            <label for="dijete.PosebnePotrebe">Posebne potrebe</label>
+            <input type="checkbox" asp-for="PosebnePotrebe" class="form-control">
+
+            <label for="dijete.GrupaID">Grupa</label>
+            <select asp-for="GrupaID" asp-items="@Model.Grupe" class="form-control"></select>
+
+            <label for="dijete.RoditeljID">Roditelj</label>
+            <select asp-for="RoditeljID" asp-items="@Model.Roditelj" class="form-control"></select>
+
+            <label for="slika">Slika</label>
+            <input type="file" name="slika" class="form-control">
+
+            <div style="display:flex;justify-content:flex-end;" class="m-t-10">
+                <button type="button" class="btn btn-secondary m-r-10" data-dismiss="modal">Odbaci</button>
+                <button type="submit" id="DodajGrad" class="btn btn-primary">Sačuvaj</button>
+            </div>
+        </form>
+    </div>
+</div>
+

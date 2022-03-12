@@ -1,0 +1,195 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+@{var usr = await UserManager.GetUserAsync(User);}
+@model KinderGarten.Models.User
+
+<div class="main-content">
+    <div class="section__content section__content--p30">
+        <div class="container-fluid">
+            <div class="row">
+                @if (Model.Role == "Roditelj")
+                {
+                    <a style="display:contents" href="/Izlet/Index" class="btn btn-secondary m-b-10">
+                        <div class="col-md-4 zoom">
+                            <div class="card">
+                                <img class="card-img-top" src="~/Slike/Izlet.png" alt="Card image cap">
+                                <div class="card-body">
+                                    <h4 class="card-title mb-3">Pregled izleta</h4>
+
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a style="display:contents" href="/Aktivnost/Index" class="btn btn-secondary m-b-10">
+                        <div class="col-md-4 zoom">
+                            <div class="card">
+                                <img class="card-img-top" src="~/Slike/Aktivnosti.png" alt="Card image cap">
+                                <div class="card-body">
+                                    <h4 class="card-title mb-3">Pregled aktivnosti</h4>
+
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a style="display:contents" href="/Uplata/Index" class="btn btn-secondary m-b-10">
+                        <div class="col-md-4 zoom">
+                            <div class="card">
+                                <img class="card-img-top" src="~/Slike/-money-bag-icon-iconbunny.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                    <h4 class="card-title mb-3">Pregled uplate</h4>
+
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                }
+                @if (Model.Role == "Zaposlenik" || Model.Role == "Admin")
+                {
+                    @if (Model.Role == "Zaposlenik")
+                    {
+                        <a style="display:contents" href="#" ajax-poziv="da" ajax-url="/RadniList/AddRadniList" ajax-rezultat="dodajGradModalBody" ajax-modal="smallmodal" class="btn btn-secondary m-b-10">
+                            <div class="col-md-4 zoom">
+                                <div class="card">
+                                    <img class="card-img-top" src="~/Slike/Radni list.png" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h4 class="card-title mb-3">Kreiraj radni list</h4>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    }
+                    @if (Model.Role == "Admin")
+                    {
+                        <a style="display:contents" href="#" ajax-poziv="da" ajax-url="/Djeca/DodajDijete" ajax-rezultat="dodajGradModalBody" ajax-modal="smallmodal" class="btn btn-secondary m-b-10">
+                            <div class="col-md-4 zoom">
+                                <div class="card">
+                                    <img class="card-img-top" src="~/Slike/Djeca.png" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h4 class="card-title mb-3">Upiši dijete</h4>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a style="display:contents" href="#" ajax-poziv="da" ajax-url="/Zaposlenik/DodajZaposlenika" ajax-rezultat="dodajGradModalBody" ajax-modal="smallmodal" class="btn btn-secondary m-b-10">
+                            <div class="col-md-4 zoom">
+                                <div class="card">
+                                    <img class="card-img-top" src="~/Slike/zaposlenici1.png" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h4 class="card-title mb-3">Dodaj zaposlenika</h4>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a style="display:contents" href="#" ajax-poziv="da" ajax-url="/Roditelj/DodajRoditelja" ajax-rezultat="dodajGradModalBody" ajax-modal="smallmodal" class="btn btn-secondary m-b-10">
+                            <div class="col-md-4 zoom">
+                                <div class="card">
+                                    <img class="card-img-top" src="~/Slike/slika1.jpg" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h4 class="card-title mb-3">Dodaj roditelja</h4>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a style="display:contents" href="#" ajax-poziv="da" ajax-url="/Uplata/DodajUplatu" ajax-rezultat="dodajGradModalBody" ajax-modal="smallmodal" class="btn btn-secondary m-b-10">
+                            <div class="col-md-4 zoom">
+                                <div class="card">
+                                    <img class="card-img-top" src="~/Slike/-money-bag-icon-iconbunny.jpg" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h4 class="card-title mb-3">Dodaj uplatu</h4>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    }
+                    <a style="display:contents" href="#" ajax-poziv="da" ajax-url="/Seminar/DodajSeminar" ajax-rezultat="dodajGradModalBody" ajax-modal="smallmodal" class="btn btn-secondary m-b-10">
+                        <div class="col-md-4 zoom">
+                            <div class="card">
+                                <img class="card-img-top" src="~/Slike/seminar.png" alt="Card image cap">
+                                <div class="card-body">
+                                    <h4 class="card-title mb-3">Dodaj seminar</h4>
+
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a style="display:contents" href="#" ajax-poziv="da" ajax-url="/Izlet/DodajIzlet" ajax-rezultat="dodajGradModalBody" ajax-modal="smallmodal" class="btn btn-secondary m-b-10">
+                        <div class="col-md-4 zoom">
+                            <div class="card">
+                                <img class="card-img-top" src="~/Slike/Izlet.png" alt="Card image cap">
+                                <div class="card-body">
+                                    <h4 class="card-title mb-3">Dodaj izlet</h4>
+
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a style="display:contents" href="#" ajax-poziv="da" ajax-url="/Aktivnost/DodajAktivnost" ajax-rezultat="dodajGradModalBody" ajax-modal="smallmodal" class="btn btn-secondary m-b-10">
+                        <div class="col-md-4 zoom">
+                            <div class="card">
+                                <img class="card-img-top" src="~/Slike/Aktivnosti.png" alt="Card image cap">
+                                <div class="card-body">
+                                    <h4 class="card-title mb-3">Dodaj aktivnost</h4>
+
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+
+                }
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<style>
+    .card {
+        min-height: 310px;
+        padding: 5%;
+    }
+
+    .card-img-top {
+        display: inline-flex;
+    }
+
+    .padding-10 {
+        padding: 10%;
+    }
+
+    .zoom {
+        transition: transform .4s; /* Animation */
+    }
+
+        .zoom:hover {
+            cursor: pointer;
+            transform: scale(1.06); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+        }
+</style>
+
+<!-- modal medium -->
+<div class="modal fade" id="smallmodal" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="smallmodalLabel">Dodaj</h5>
+            </div>
+            <div class="modal-body" id="dodajGradModalBody">
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end modal medium -->

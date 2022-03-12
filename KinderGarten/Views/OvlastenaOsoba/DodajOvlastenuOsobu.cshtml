@@ -1,0 +1,53 @@
+﻿@{ Layout = null; 
+    int dijeteId = (int)ViewData["dijeteId"];
+    }
+
+@model KinderGarten.ViewModels.DodajOvlastenuOsobuVM
+
+<div class="card">
+    <div class="card-body">
+        <form method="post" action="/OvlastenaOsoba/DodajOvlastenaOsoba" ajax-request="true" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+            <input asp-for="DijeteID" hidden />
+
+            <label for="OvlastenaOsoba.Ime">Ime</label>
+            <input asp-for="Ime" class="form-control">
+
+            <label for="OvlastenaOsoba.Prezime">Prezime</label>
+            <input asp-for="Prezime" class="form-control">
+
+            <label for="OvlastenaOsoba.JMBG">JMBG</label>
+            <input asp-for="JMBG" class="form-control">
+
+            <label for="OvlastenaOsoba.DatumRodjenja">Datum rođenja</label>
+            <input type="date" asp-for="DatumRodjenja" class="form-control">
+
+            <label for="OvlastenaOsoba.Adresa">Adresa</label>
+            <input asp-for="Adresa" class="form-control">
+
+            <label for="OvlastenaOsoba.BrojTelefona">Broj telefona</label>
+            <input asp-for="BrojTelefona" class="form-control">
+
+            <label for="OvlastenaOsoba.Email">Email</label>
+            <input asp-for="Email" class="form-control">
+
+            <label for="OvlastenaOsoba.StrucnaSpremaID">Stručna sprema</label>
+            <select asp-for="StrucnaSpremaID" asp-items="@Model.StrucnaSprema" class="form-control"></select>
+
+            <label for="OvlastenaOsoba.Zaposlen">Zaposlen</label>
+            <input type="checkbox" asp-for="Zaposlen" class="form-control">
+
+            <label for="OvlastenaOsoba.Aktivan">Aktivan</label>
+            <input type="checkbox" asp-for="Aktivan" class="form-control">
+
+            <label for="slika">Slika</label>
+            <input type="file" name="slika" class="form-control">
+
+            <div style="display:flex;justify-content:flex-end;" class="m-t-10">
+                <button type="button" class="btn btn-secondary m-r-10" data-dismiss="modal">Odbaci</button>
+                <button type="submit" id="DodajGrad" class="btn btn-primary">Sačuvaj</button>
+            </div>
+        </form>
+    </div>
+</div>
+

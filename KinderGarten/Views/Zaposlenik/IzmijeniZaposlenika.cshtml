@@ -1,0 +1,45 @@
+﻿@{ Layout = null; }
+
+@model KinderGarten.ViewModels.DodajZaposlenikaVM
+
+<div class="card">
+    <div class="card-body">
+        <form method="post" action="/Zaposlenik/Izmijeni" ajax-request="true">
+            @Html.AntiForgeryToken()
+            <input asp-for="ID" hidden />
+
+            <label for="zaposlenik.Ime">Ime</label>
+            <input asp-for="Ime" class="form-control">
+
+            <label for="zaposlenik.Prezime">Prezime</label>
+            <input asp-for="Prezime" class="form-control">
+
+            <label for="zaposlenik.JMBG">JMBG</label>
+            <input asp-for="JMBG" class="form-control">
+
+            <label for="zaposlenik.DatumRodjenja">Datum rođenja</label>
+            <input type="date" asp-for="DatumRodjenja" class="form-control">
+
+            <label for="zaposlenik.Adresa">Adresa</label>
+            <input asp-for="Adresa" class="form-control">
+
+            <label for="zaposlenik.BrojTelefona">Broj telefona</label>
+            <input asp-for="BrojTelefona" class="form-control">
+
+            <label for="zaposlenik.Email">Email</label>
+            <input asp-for="Email" class="form-control">
+
+            <label for="zaposlenik.StrucnaSpremaID">Strucna sprema</label>
+            <select asp-for="StrucnaSpremaID" asp-items="@Model.StrucnaSprema" class="form-control"></select>
+
+            <label for="zaposlenik.Zanimanje">Zanimanje</label>
+            <select asp-for="ZanimanjeID" asp-items="@Model.Zanimanje" class="form-control"></select>
+
+            <div style="display:flex;justify-content:flex-end;" class="m-t-10">
+                <button type="button" class="btn btn-secondary m-r-10" data-dismiss="modal">Odbaci</button>
+                <button type="submit" id="IzmijeniZaposlenika" class="btn btn-primary">Sačuvaj</button>
+            </div>
+        </form>
+    </div>
+</div>
+

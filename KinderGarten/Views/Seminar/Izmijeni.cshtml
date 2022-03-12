@@ -1,0 +1,35 @@
+﻿@{ Layout = null; }
+
+@model KinderGarten.ViewModels.DodajSeminarVM
+
+<div class="card">
+    <div class="card-body">
+        <form method="post" action="/Seminar/Izmijeni" ajax-request="true">
+            @Html.AntiForgeryToken()
+            <input asp-for="SeminarID" value="@Model.SeminarID" hidden />
+
+            <label for="NazivSeminara">Naziv seminara</label>
+            <input asp-for="NazivSeminara" class="form-control" value="@Model.NazivSeminara">
+
+            <label for="VrijemeSeminaraOd">Datum i vrijeme početka seminara</label>
+            <input type="date" asp-for="VrijemeSeminaraOd" class="form-control" value="@Model.VrijemeSeminaraOd">
+
+            <label for="VrijemeSeminaraDo">Datum i vrijeme završetka seminara </label>
+            <input type="date" asp-for="VrijemeSeminaraDo" class="form-control" value="@Model.VrijemeSeminaraDo">
+
+            <label for="Certifikat">Certifikat</label>
+            <input type="checkbox" asp-for="Certifikat" class="form-control">
+
+            <label for="Adresa">Adresa</label>
+            <input asp-for="Adresa" class="form-control" value="@Model.Adresa">
+
+            <label for="Gradovi">Grad</label>
+            <select asp-for="GradID" asp-items="@Model.Gradovi" class="form-control"></select>
+
+            <div style="display:flex;justify-content:flex-end;" class="m-t-10">
+                <button type="button" class="btn btn-secondary m-r-10" data-dismiss="modal">Odbaci</button>
+                <button type="submit" id="DodajGrad" class="btn btn-primary">Sačuvaj</button>
+            </div>
+        </form>
+    </div>
+</div>

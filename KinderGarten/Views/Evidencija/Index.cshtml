@@ -1,0 +1,25 @@
+﻿@model IEnumerable<KinderGarten.Models.Evidencija>
+
+<div class="table-responsive table-primary m-b-30">
+    <table class="table table-borderless table-striped table-earning">
+        <thead>
+            <tr>
+                <th>Dijete</th>
+                <th>Vrijeme</th>
+                <th>Odlazak</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Dijete.Ime @item.Dijete.Prezime</td>
+                    <td>@item.Vrijeme.ToString()</td>
+                    <td><button onclick="PromijeniStatus(@item.ID)" class="btn @(!item.Odlazak ? "btn-success" : "btn-danger")">@(!item.Odlazak ? "Prisutan" : "Odsutan")</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+

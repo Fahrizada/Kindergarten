@@ -1,0 +1,30 @@
+﻿@{ Layout = null; }
+
+@model KinderGarten.Models.Aktivnost
+
+<div class="card">
+    <div class="card-body">
+        <form method="post" action="/Aktivnost/Izmijeni" ajax-request="true">
+            @Html.AntiForgeryToken()
+            <input asp-for="ID" value="@Model.ID" hidden />
+
+            <label for="NazivAktivnosti">Naziv aktivnosti</label>
+            <input asp-for="NazivAktivnosti" class="form-control" value="@Model.NazivAktivnosti">
+
+            <label for="OpisAktivnosti">Opis aktivnosti</label>
+            <input asp-for="OpisAktivnosti" class="form-control" value="@Model.OpisAktivnosti">
+
+            <label for="DatumAktivnosti">Datum aktivnosti </label>
+            <input type="date" asp-for="DatumAktivnosti" class="form-control" value="@Model.DatumAktivnosti">
+
+
+
+
+
+            <div style="display:flex;justify-content:flex-end;" class="m-t-10">
+                <button type="button" class="btn btn-secondary m-r-10" data-dismiss="modal">Odbaci</button>
+                <button type="submit" id="DodajGrad" class="btn btn-primary">Sačuvaj</button>
+            </div>
+        </form>
+    </div>
+</div>

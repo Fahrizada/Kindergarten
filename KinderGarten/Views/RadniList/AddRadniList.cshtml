@@ -1,0 +1,26 @@
+﻿@{ Layout = null; }
+@model KinderGarten.ViewModels.DodajRadniListVM
+
+<div class="card">
+    <div class="card-body">
+        <form method="post" id="DodajRadniList" action="/RadniList/AddRadniList" ajax-request="true">
+            @Html.AntiForgeryToken()
+            <label for="@Model.Datum">Datum</label>
+            <input asp-for="Datum" class="form-control" readonly>
+
+            <label for="@Model.GrupaID">Grupa</label>
+            <select asp-for="GrupaID" asp-items="@Model.Grupe" class="form-control"></select>
+
+            <label for="@Model.ZaposlenikPrvaSmjenaID">Zaposlenik</label>
+            <select asp-for="ZaposlenikPrvaSmjenaID" asp-items="@Model.Zaposlenici" class="form-control"></select>
+
+            <label for="@Model.ZaposlenikDrugaSmjenaID">Zaposlenik</label>
+            <select asp-for="ZaposlenikDrugaSmjenaID" asp-items="@Model.Zaposlenici" class="form-control"></select>
+
+            <div style="display:flex;justify-content:flex-end;" class="m-t-10">
+                <button type="button" class="btn btn-secondary m-r-10" data-dismiss="modal">Odbaci</button>
+                <button type="submit" id="AddRadniList" class="btn btn-primary">Sačuvaj</button>
+            </div>
+        </form>
+    </div>
+</div>

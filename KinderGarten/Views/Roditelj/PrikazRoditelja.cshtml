@@ -1,0 +1,83 @@
+﻿@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+
+@model IEnumerable<KinderGarten.Models.Roditelj>
+
+@{ ViewData["Title"] = "PrikazRoditelja";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<div class="main-content">
+    <div class="section__content section__content--p30">
+        <div class="container-fluid">
+            <a href="#" ajax-poziv="da" ajax-url="/Roditelj/DodajRoditelja" ajax-rezultat="dodajGradModalBody" ajax-modal="smallmodal" class="btn btn-secondary m-b-10" style="background-color:#333">
+                <i class="fa fa-plus m-r-10"></i>Dodaj
+            </a>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="table-responsive table-primary m-b-30">
+
+
+                        <table class="table table-borderless table-striped table-earning">
+                            <thead>
+                                <tr>
+                                    <th>Ime i prezime</th>
+                                    <th>Broj telefona</th>
+                                    <th>E-mail</th>
+                                    <th>Izbriši</th>
+                                    <th>Detalji</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var roditelj in Model)
+                                {
+                                    <tr>
+                                        <td>@roditelj.Ime @roditelj.Prezime</td>
+                                        <td>@roditelj.BrojTelefona</td>
+                                        <td>@roditelj.Email</td>
+                                        <td><a href="/Roditelj/ObrisiRoditelja?RoditeljID=@roditelj.ID"><i class="fa fa-trash"></i></a></td>
+                                        <td><a href="Roditelj/DetaljiRoditelja?RoditeljID=@roditelj.ID"><i class="fa fa-info"></i></a></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                        @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page = page }),
+                            new X.PagedList.Mvc.Core.Common.PagedListRenderOptions
+                            {
+                                DisplayItemSliceAndTotal = false,
+                                ContainerDivClasses = new[] { "navigation" },
+                                LiElementClasses = new[] { "page-item" },
+                                PageClasses = new[] { "page-link" },
+                            })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- modal medium -->
+<div class="modal fade" id="smallmodal" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="smallmodalLabel">Detalji o roditelju</h5>
+            </div>
+            <div class="modal-body" id="dodajGradModalBody">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(function () {
+            $('ul.pagination > li.disabled > a').addClass('page-link');
+        });
+        //$(document).ready(function () {
+        //    $('ul.pagination> li.disabled > a').addClass('paged-link');
+        //});
+    </script>
+  
+}

@@ -1,0 +1,35 @@
+﻿@model KinderGarten.ViewModels.DodajEvidencijuVM
+
+<div class="card">
+    <div class="card-body">
+        <form asp-action="DodajEvidenciju" ajax-request="true">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input asp-for="RadniListID" class="form-control" readonly hidden />
+            <div class="form-group">
+                <label asp-for="Datum" class="control-label"></label>
+                <input asp-for="Datum" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="ZaposlenikID" class="control-label"></label>
+                <select asp-for="ZaposlenikID" asp-items="Model.Zaposlenici" class="form-control"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="DijeteID" class="control-label"></label>
+                <select asp-for="DijeteID" asp-items="Model.Djeca" class="form-control"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="RoditeljID" class="control-label"></label>
+                <select asp-for="RoditeljID" asp-items="Model.Roditelji" class="form-control"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="OdlazakID" class="control-label"></label>
+                <select asp-for="OdlazakID" asp-items="Model.Odlazak" class="form-control"></select>
+            </div>
+            <div style="display:flex;justify-content:flex-end;" class="m-t-10">
+                <button type="button" class="btn btn-secondary m-r-10" data-dismiss="modal">Odbaci</button>
+                <button type="submit" id="DodajDrzavu" class="btn btn-primary">Sačuvaj</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+﻿@{ Layout = null; }
+
+@model KinderGarten.ViewModels.IzmijeniUplatuVM
+
+<div class="card">
+    <div class="card-body">
+        <form method="post" action="/Uplata/Izmijeni" ajax-request="true">
+            @Html.AntiForgeryToken()
+            <input asp-for="Uplata.ID" value="@Model.Uplata.ID" hidden />
+
+            <label for="uplata.RoditeljID">Roditelj</label>
+            <select asp-for="Uplata.RoditeljID" asp-items="@Model.Roditelj" class="form-control"></select>
+
+            <label for="uplata.DijeteID">Dijete</label>
+            <select asp-for="Uplata.DijeteID" asp-items="@Model.Dijete" class="form-control"></select>
+
+            <label for="uplata.VrstaUplateID">Vrsta uplate</label>
+            <select asp-for="Uplata.VrstaUplateID" asp-items="@Model.VrstaUplate" class="form-control"></select>
+
+            <label for="roditelj.DatumUplate">Datum uplate</label>
+            <input type="date" asp-for="Uplata.DatumUplate" class="form-control">
+
+
+            <label for="roditelj.Iznos">Iznos uplate</label>
+            <input asp-for="Uplata.Iznos" class="form-control">
+
+
+            <div style="display:flex;justify-content:flex-end;" class="m-t-10">
+                <button type="button" class="btn btn-secondary m-r-10" data-dismiss="modal">Odbaci</button>
+                <button type="submit" id="DodajGrad" class="btn btn-primary">Sačuvaj</button>
+            </div>
+        </form>
+    </div>
+</div>

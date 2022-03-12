@@ -1,0 +1,27 @@
+﻿@{ Layout = null; }
+
+@model KinderGarten.ViewModels.DodajGradVM
+
+<div class="card">
+    <div class="card-body">
+        <form method="post" action="/Grad/Izmijeni" ajax-request="true">
+            @Html.AntiForgeryToken()
+            <input asp-for="ID" hidden />
+
+            <label for="grad.Naziv">Naziv</label>
+            <input asp-for="Naziv" class="form-control" value="@Model.Naziv">
+
+            <label for="grad.PostanskiBroj">Poštanski broj</label>
+            <input asp-for="PostasnkiBroj" value="@Model.PostasnkiBroj" class="form-control">
+
+            <label for="grad.DrzavaID">Država</label>
+            <select asp-for="DrzavaID" asp-items="@Model.Drzave" class="form-control"></select>
+
+            <div style="display:flex;justify-content:flex-end;" class="m-t-10">
+                <button type="button" class="btn btn-secondary m-r-10" data-dismiss="modal">Odbaci</button>
+                <button type="submit" id="DodajGrad" class="btn btn-primary">Sačuvaj</button>
+            </div>
+        </form>
+    </div>
+</div>
+

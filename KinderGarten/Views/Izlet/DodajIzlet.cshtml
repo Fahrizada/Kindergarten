@@ -1,0 +1,26 @@
+﻿
+@{ Layout = null;
+}
+
+@model KinderGarten.ViewModels.DodajIzletVM
+
+<div class="card">
+    <div class="card-body">
+        <form method="post" action="/Izlet/DodajIzlet" ajax-request="true" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+            <label asp-for="Lokacija">Lokacija</label>
+            <input asp-for="Lokacija" class="form-control" />
+
+            <label asp-for="DatumIzletaOd">Datum od</label>
+            <input class="form-control" type="date" asp-for="DatumIzletaOd" />
+
+            <label asp-for="DatumIzletaDo">Datum do</label>
+            <input class="form-control" type="date" asp-for="DatumIzletaDo" />
+
+            <div style="display:flex;justify-content:flex-end;" class="m-t-10">
+                <button type="button" class="btn btn-secondary m-r-10" data-dismiss="modal">Odbaci</button>
+                <button type="submit" id="DodajGrad" class="btn btn-primary">Sačuvaj</button>
+            </div>
+        </form>
+    </div>
+</div>
